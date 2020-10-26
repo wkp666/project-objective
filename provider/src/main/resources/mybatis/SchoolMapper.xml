@@ -8,24 +8,19 @@
 
     <!--查询总数据-->
     <select id="findShcool" resultType="SchoolEntity">
-    <bind name="key_info" value="(currPage-1)*pageSize"/>
+        <bind name="key_info" value="(currPage-1)*pageSize"/>
         select a.*,b.type_name cName from t_shcool a left join t_type b on a.typeid=b.type_id
         limit #{key_info},#{pageSize}
     </select>
-
-    <!--新增数据-->
+<!--新增-->
     <insert id="addSchool">
-        insert into t_school values (#{sId},#{sName},#{typeId},#{sLocation},#{sDate},#{sGly},#{sdesc})
+         insert into t_school values (#{sId},#{sName},#{typeId},#{sLocation},#{sDate},#{sGly},#{sdesc})
     </insert>
 
-    <!--修改数据-->
-    <update id="upSchool">
-        update t_school set s_name=#{sName},typeid=#{typeId},s_location=#{sLocation},s_date=#{sDate},s_gly=#{sGly},s_desc=#{} where s_id=#{sId}
-    </update>
-
-    <!--删除 单删-->
+    <!--批删 单删-->
     <delete id="delSchool">
-        delete from t_school where s_id=#{ids}
+        delete from t_school where s_id in
+        <foreach collection="array" open="(" separator="," close=")" item="id">#{id}</foreach>
     </delete>
 
     <!--回显一条数据-->
