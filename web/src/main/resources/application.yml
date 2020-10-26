@@ -1,6 +1,8 @@
 server:
   port: 8080
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: web
   thymeleaf:
@@ -24,3 +26,4 @@ eureka:
 feign:
   hystrix:
     enabled: true
+
