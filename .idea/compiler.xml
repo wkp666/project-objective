@@ -10,6 +10,7 @@
         <module name="common" />
         <module name="provider" />
         <module name="web" />
+        <module name="common2" />
         <module name="eureka" />
       </profile>
     </annotationProcessing>
@@ -17,6 +18,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="common" options="-parameters" />
+      <module name="common2" options="-parameters" />
       <module name="eureka" options="-parameters" />
       <module name="provider" options="-parameters" />
       <module name="web" options="-parameters" />
