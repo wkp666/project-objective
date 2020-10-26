@@ -3,7 +3,6 @@ package com.jk.controller;
 import com.jk.entity.PageResult;
 import com.jk.entity.SchoolEntity;
 import com.jk.service.SchoolService;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,32 +13,25 @@ import javax.annotation.Resource;
 public class SchoolController {
     @Resource
     private SchoolService schoolService;
-    /*
-    * 学校管理分页
-    * */
-    @RequestMapping("/findSchool")
-    public PageResult findSchool (@RequestParam(value = "currPage")Integer currPage,@RequestParam(value = "pageSize")Integer pageSize){
+
+    //查询数据分页
+    @RequestMapping("/findAll")
+    public PageResult findAll(@RequestParam(value = "currPage")Integer currPage, @RequestParam(value = "pageSize")Integer pageSize){
         return schoolService.findSchool(currPage,pageSize);
     }
-    /*
-    * 学校管理新增数据
-    * */
-    @RequestMapping("/addSchool")
-    public void addSchool(@RequestBody SchoolEntity school){
+    //新增数据
+    @RequestMapping("/add")
+    public void add(SchoolEntity school){
         schoolService.addSchool(school);
     }
-    /*
-    * 单删
-    * */
-    @RequestMapping("/delSchool")
-    public void delSchool(@RequestParam Integer ids){
+    //单删
+    @RequestMapping("/del")
+    public void del(Integer ids){
         schoolService.delSchool(ids);
     }
-    /*
-    * 回显数据
-    * */
+    //回显数据
     @RequestMapping("/findOne")
-    public SchoolEntity findOne(@RequestParam Integer ids){
+    public SchoolEntity findOne(Integer ids){
         return schoolService.findOne(ids);
     }
 }
