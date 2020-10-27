@@ -1,6 +1,6 @@
 package com.jk.controller;
 
-import com.jk.entity.PageResult;
+import com.jk.config.PageResult;
 import com.jk.entity.SchoolEntity;
 import com.jk.service.schService;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +16,7 @@ public class SchController {
 
     //查询数据分页
     @RequestMapping("/findAll")
-    public PageResult findAll(@RequestParam(value = "currPage")Integer currPage, @RequestParam(value = "pageSize")Integer pageSize){
+    public PageResult findAll(@RequestParam(value = "currPage",defaultValue = "2")Integer currPage, @RequestParam(value = "pageSize",defaultValue = "10")Integer pageSize){
         return schoolService.findSchool(currPage,pageSize);
     }
     //新增数据

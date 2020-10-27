@@ -3,28 +3,28 @@
 <mapper namespace="com.jk.dao.SchoolMapper">
     <!--统计总条数-->
     <select id="count" resultType="java.lang.Long">
-        select count(*) from t_shcool
+        select count(*) from shcool
     </select>
 
     <!--查询总数据-->
     <select id="findShcool" resultType="SchoolEntity">
         <bind name="key_info" value="(currPage-1)*pageSize"/>
-        select a.*,b.type_name cName from t_shcool a left join t_type b on a.typeid=b.type_id
+        select a.*,b.type_name cName from shcool a left join t_type b on a.typeid=b.type_id
         limit #{key_info},#{pageSize}
     </select>
 <!--新增-->
     <insert id="addSchool">
-         insert into t_school values (#{sId},#{sName},#{typeId},#{sLocation},#{sDate},#{sGly},#{sdesc})
+         insert into shcool values (#{sId},#{sName},#{typeId},#{sLocation},#{sDate},#{sGly},#{sdesc})
     </insert>
 
     <!--批删 单删-->
     <delete id="delSchool">
-        delete from t_school where s_id in
+        delete from school where s_id in
         <foreach collection="array" open="(" separator="," close=")" item="id">#{id}</foreach>
     </delete>
 
     <!--回显一条数据-->
     <select id="findOne" resultType="SchoolEntity">
-        select * from t_school where s_id=#{ids}
+        select * from school where s_id=#{ids}
     </select>
 </mapper>

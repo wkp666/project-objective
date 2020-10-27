@@ -18,4 +18,8 @@ public class SchoolEntity {
     private String  sGly;
     //描述
     private String  sdesc;
+
+    //业务字段
+    private String cName;
+
 }

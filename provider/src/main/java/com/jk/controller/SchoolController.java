@@ -1,6 +1,6 @@
 package com.jk.controller;
 
-import com.jk.entity.PageResult;
+import com.jk.config.PageResult;
 import com.jk.entity.SchoolEntity;
 import com.jk.service.SchoolService;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,7 +42,7 @@ public class SchoolController {
      * 回显数据
      * */
     @RequestMapping("/findOne")
-    public SchoolEntity findOne(@RequestParam Integer ids){
+    public SchoolEntity findOne( Integer ids){
         return schoolService.findOne(ids);
     }
 }

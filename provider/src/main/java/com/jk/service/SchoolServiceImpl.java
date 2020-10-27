@@ -1,7 +1,7 @@
 package com.jk.service;
 
 import com.jk.dao.SchoolMapper;
-import com.jk.entity.PageResult;
+import com.jk.config.PageResult;
 import com.jk.entity.SchoolEntity;
 import org.springframework.stereotype.Service;
 

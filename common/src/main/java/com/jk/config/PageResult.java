@@ -1,4 +1,4 @@
-package com.jk.entity;
+package com.jk.config;
 
 import lombok.Data;
 

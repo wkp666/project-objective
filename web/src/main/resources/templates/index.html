@@ -32,7 +32,7 @@
             <td><input type="checkbox" name="che" :value="abc.sId"></td>
             <td>{{abc.sId}}</td>
             <td>{{abc.sName}}</td>
-            <td>{{abc.typeId}}</td>
+            <td>{{abc.cName}}</td>
             <td>{{abc.sLocation}}</td>
             <td>{{abc.sDate}}</td>
             <td>{{abc.sGly}}</td>
@@ -104,7 +104,7 @@
     var vm = new Vue({
         el: '#app',
         data: {
-            gamelist: "",
+            schoollist: "",
             totalPage:"",
             total:"",
             currPage:"1",
@@ -121,13 +121,13 @@
         searchTypelist();
     }
     //单删
-    function shan(id) {
+    function shan(ids) {
         var r=confirm("确认删除选择的数据吗?");
         if (r){
             $.ajax({
                 url:"/del",
                 type:"post",
-                data:{id:id},
+                data:{ids:ids},
                 success:function(){
                     searchTypelist();
                 },
@@ -137,11 +137,11 @@
         }
     }
     //修改
-    function xiu(id){
+    function xiu(ids){
         $.ajax({
-            url:"/sel",
+            url:"/findOne",
             type:"post",
-            data:{id:id},
+            data:{ids:ids},
             success:function(data){
                 vs.list=data;
             },
@@ -164,17 +164,17 @@
         var id="";
         for ( var i = 0; i < arr.length; i++) {
             if (arr[i].checked) {
-                id+= id==""?arr[i].value:","+arr[i].value;
+                ids+= ids==""?arr[i].value:","+arr[i].value;
             }
         }
-        if (id=="") {
+        if (ids=="") {
             alert("请至少选中一条！");
             return;
         }
         $.ajax({
             url:"/del",
             type:"post",
-            data:{'id':id},
+            data:{'ids':ids},
             success:function(){
                 alert("删除成功")
                 searchTypelist();
@@ -197,7 +197,7 @@
             data:{"currPage":vm.currPage,"pageSize":vm.pageSize},
             dataType:"json",
             success: function(result) {
-                vm.gamelist = result.rows;
+                vm.schoollist = result.rows;
                 vm.totalPage = result.totalPage;
                 vm.total = result.total;
                 vm.currPage = result.currPage;

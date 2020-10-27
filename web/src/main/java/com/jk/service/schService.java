@@ -1,6 +1,6 @@
 package com.jk.service;
 
-import com.jk.entity.PageResult;
+import com.jk.config.PageResult;
 import com.jk.entity.SchoolEntity;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +13,7 @@ public interface schService {
     * 学校管理分页查询
     * */
     @RequestMapping("/findSchool")
-    public PageResult findSchool (@RequestParam(value = "currPage")Integer currPage, @RequestParam(value = "pageSize")Integer pageSize);
+    public PageResult findSchool (@RequestParam(value = "currPage",defaultValue = "2")Integer currPage, @RequestParam(value = "pageSize",defaultValue = "10")Integer pageSize);
     /*
      * 学校管理新增数据
      * */
