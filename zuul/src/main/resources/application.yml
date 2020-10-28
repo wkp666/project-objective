@@ -1,0 +1,24 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: zuul
+
+eureka:
+  client:
+    service-url:
+      dafaultZone: http://127.0.0.1:8761/eureka
+
+zuul:
+  routes:
+       web:
+         path: /web/**
+         serviceId: web
+   provider:
+       path: /provider/**
+       serviceId: provider
+
+
+
+

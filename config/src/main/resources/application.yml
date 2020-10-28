@@ -1,0 +1,33 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Changk0128/Saya-config.git
+          search-paths: /
+          username:
+          password:
+          skip-ssl-validation: true
+      label: master
+  zipkin:
+    base-url: http://127.0.0.1:9411
+    sender:
+      type: rabbit
+  sleuth:
+    sampler:
+      probability: 1
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
+eureka:
+  client:
+    service-url:
+      dafaultZone: http://127.0.0.1:8761/earuka

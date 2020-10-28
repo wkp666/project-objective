@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-
+//@RefreshScope   @RefreshScope注解只需要写在需要刷新配置文件的地方，不一定非要在启动类中
 @RestController
 public class SchoolController {
     @Resource
