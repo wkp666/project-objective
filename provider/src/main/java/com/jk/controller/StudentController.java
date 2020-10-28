@@ -42,6 +42,8 @@ public class StudentController {
     public void xinzheng(@RequestBody StudentEntity student){
         studentService.xinzheng(student);
     }
-
-
+    @RequestMapping("tostudenttiaoban")
+    public  StudentEntity tostudenttiaoban(@RequestParam Integer id){
+        return studentService.tostudenttiaoban(id);
+    }
 }

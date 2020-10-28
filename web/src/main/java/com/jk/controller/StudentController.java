@@ -55,4 +55,20 @@ public class StudentController {
     public List<StudentEntity> findStudent(){
         return studentService.findStudent();
     }
+
+    @RequestMapping("tree")
+    public String start(){
+        return "tree";
+    }
+    @RequestMapping("home")
+    public String home(){
+        return "home";
+    }
+    //跳调班
+    @RequestMapping("tostudenttiaoban")
+    public String tostudenttiaoban(Model model,Integer id){
+        StudentEntity student = studentService.tostudenttiaoban(id);
+        model.addAttribute("student",student);
+        return "studenttiaoban";
+    }
 }

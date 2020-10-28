@@ -16,4 +16,7 @@
     <insert id="xinzheng" parameterType="com.jk.entity.StudentEntity">
         insert  into t_student values (#{id},#{stuname},#{stuclass},#{stuphone},#{stustatus},#{stuschool})
     </insert>
+    <select id="tostudenttiaoban" resultType="com.jk.entity.StudentEntity" parameterType="int">
+         select * from t_student where id=#{id}
+    </select>
 </mapper>

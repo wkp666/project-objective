@@ -13,7 +13,6 @@
 <div class="container">
     <h1>学生列表</h1>
     <div class="text-left">
-        <a class="btn btn-info" th:href="@{toAdd}">新增学生</a>
         姓名：<input type="text" value="" name="ename" th:value="${stuname}">
         <a href="/findStudent">查询</a>
     </div>
@@ -39,7 +38,7 @@
             <td th:text="${order.stuphone}"></td>
             <td th:text="${order.stustatus==1?'启用':'禁用'}"></td>
             <td>
-                <a th:href="@{/tiaoban(id=${order.id})}">调班</a>
+                <a th:href="@{/tostudenttiaoban(id=${order.id})}">调班</a>
             </td>
             <td>
                 <a th:href="@{/selectStudentById(id=${order.id})}">编辑</a>
@@ -63,6 +62,5 @@
         <li th:class="${indexPage==totalPage}?'disabled' : ''" ><a href="#">下一页</a></li>
     </ul>
 </div>
-
 </body>
 </html>

@@ -20,4 +20,6 @@ public interface StudentService {
     public void saveOrder(@RequestBody StudentEntity student);
     @RequestMapping("xinzheng")
     public void xinzheng(@RequestBody StudentEntity student);
+    @RequestMapping("tostudenttiaoban")
+    public  StudentEntity tostudenttiaoban(@RequestParam Integer id);
 }

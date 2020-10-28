@@ -15,4 +15,6 @@ public interface StudentMapper {
     void saveOrder(StudentEntity student);
 
     void xinzheng(StudentEntity student);
+
+    StudentEntity tostudenttiaoban(Integer id);
 }

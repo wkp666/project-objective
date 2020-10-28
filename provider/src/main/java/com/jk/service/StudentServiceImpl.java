@@ -35,4 +35,9 @@ public class StudentServiceImpl implements  StudentService{
     public void xinzheng(StudentEntity student) {
         studentMapper.xinzheng(student);
     }
+
+    @Override
+    public StudentEntity tostudenttiaoban(Integer id) {
+        return studentMapper.tostudenttiaoban(id);
+    }
 }
