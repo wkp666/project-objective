@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-table.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstarp/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstarp/bootstrap-table.css}" />
+</head>
+<style>
+    body{
+        background:#f9f9f9;
+        color: #000000;
+        font-size: 16px;
+        font-family: 微软雅黑；
+    }
+</style>
+<body>
+<div class="container">
+    <h1>修改编辑</h1>
+    <form class="form-horizontal" th:action="@{/xinzheng}" method="post">
+        <input type="hidden" name="id" th:value="${clist.id}" />
+
+        <div class="form-group">
+            <label for="kdate" class="col-sm-2 control-label">开始时间</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control"    placeholder="" th:value="${clist.kdate}" disabled/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="jdate" class="col-sm-2 control-label">结束时间</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control"    placeholder="" th:value="${clist.jdate}" disabled/>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">课表类型</label>
+            <div class="col-sm-10">
+                <!--<input type="text" class="form-control" name="staffSection"  id="staffSection" placeholder="员工部门" th:value="${staff.staffSection}"/>-->
+                <select th:field="${clist.stype}" th:switch="${clist.stype}" name="stype" >
+                    <option  th:selected="selected" value="1">通用</option>
+                    <option th:selected="selected" value="0">待定</option>
+                </select>
+            </div>
+        </div>
+
+
+        <table border="2" width="80%" align="center" bgcolor="#FFF0FF" cellpadding="7" cellspacing="7">
+            <caption style="font-size: 30px;">课程表</caption>
+            <tr>
+                <th style="font-size: 16px;"></th>
+                <th colspan="2" style="font-size: 20px;"><b>周一</b></th>
+                <th colspan="2" style="font-size: 20px;"><b>周二</b></th>
+                <th colspan="2" style="font-size: 20px;"><b>周三</b></th>
+                <th colspan="2" style="font-size: 20px;"><b>周四</b></th>
+                <th colspan="2" style="font-size: 20px;"><b>周五</b></th>
+                <th colspan="2" style="font-size: 20px;"><b>周六</b></th>
+                <th colspan="2" style="font-size: 20px;"><b>周日</b></th>
+            </tr>
+            <tr>
+                <td align="center" rowspan="5"><strong>1</strong></td>
+                <td colspan="2"></td>
+                <td colspan="2" rowspan="2" align="center"><a href="#" target="new">语文</a></td>
+                <td colspan="2" rowspan="2" align="center"><a href="#" target="new"></a></td>
+                <td colspan="2" rowspan="2" align="center"><a href="#" target="new"></a></td>
+                <td colspan="2" rowspan="2" align="center"><a href="#" target="new"></a></td>
+                <td colspan="2" rowspan="2" align="center"><a href="#" target="new"></a></td>
+                <td colspan="2" rowspan="2" align="center"><a href="#" target="new">数学</a></td>
+            </tr>
+        </table>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="新增" class="btn btn-info" />
+                <a th:href="@{/findStudent}" class="btn btn-info">返回</a>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

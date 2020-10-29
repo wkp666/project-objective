@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.dao.ClassMapper">
+    <select id="findClass" resultType="com.jk.entity.ClassEntity">
+        select * from t_class
+    </select>
+    <delete id="deleteClass" parameterType="int">
+        delete from t_class where id =#{id}
+    </delete>
+    <select id="selectClassById" resultType="com.jk.entity.ClassEntity" parameterType="int">
+        SELECT c.*,b.zyi,b.cid,b.zer,b.zsan,b.zsi,b.zwu,b.zliu,b.zri from t_class c
+LEFT JOIN tb_class b on c.sname=b.cname
+where c.id=#{id}
+    </select>
+    <insert id="addClass" parameterType="com.jk.entity.ClassEntity">
+        insert into t_class values(#{id},#{sclass},#{kdate},#{jdate},#{stype},#{sname})
+    </insert>
+</mapper>

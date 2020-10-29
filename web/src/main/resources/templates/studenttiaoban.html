@@ -17,15 +17,14 @@
             <label class="col-sm-2 control-label">所属学校</label>
             <div class="col-sm-10">
                 <!--<input type="text" class="form-control" name="staffSection"  id="staffSection" placeholder="员工部门" th:value="${staff.staffSection}"/>-->
-                <select th:field="${student.stuschool}" th:value="${student.stuschool}" name="stuschool" lay-verify="required">
+                <select th:field="${student.stuschool}" th:switch="${student.stuschool}" name="stuschool" >
                     <option value="">请选择分配部门</option>
-                    <option value="香创幼儿园">香创幼儿园</option>
-                    <option value="香创小学">香创小学</option>
-                    <option value="香创中学">香创中学</option>
+                    <option th:selected="selected" value="香创幼儿园">香创幼儿园</option>
+                    <option  th:selected="selected" value="香创小学">香创小学</option>
+                    <option th:selected="selected" value="香创中学">香创中学</option>
                 </select>
             </div>
         </div>
-
 
 
         <div class="form-group">
@@ -34,12 +33,12 @@
                 <!--
                                 &lt;!&ndash;<input type="text" class="form-control" name="staffSection"  id="staffSection" placeholder="员工部门" th:value="${staff.staffSection}"/>&ndash;&gt;
                 -->
-                <select th:field="${student.stuclass}" th:value="${student.stuclass}" name="stuclass" lay-verify="required">
+                <select th:field="${student.stuclass}" th:switch="${student.stuclass}" name="stuclass" >
                     <option value="">请选择分配部门</option>
-                    <option value="一年(1)班">一年(1)班</option>
-                    <option value="一年(2)班">一年(2)班</option>
-                    <option value="二年(1)班">二年(1)班</option>
-                    <option value="二年(2)班">二年(2)班</option>
+                    <option  th:selected="selected" value="一年(1)班">一年(1)班</option>
+                    <option  th:selected="selected" value="一年(2)班">一年(2)班</option>
+                    <option  th:selected="selected" value="二年(1)班">二年(1)班</option>
+                    <option  th:selected="selected" value="二年(2)班">二年(2)班</option>
                 </select>
             </div>
         </div>
