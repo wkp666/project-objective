@@ -1,30 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jk.dao.SchoolMapper">
-    <!--统计总条数-->
-    <select id="count" resultType="java.lang.Long">
-        select count(*) from shcool
-    </select>
 
-    <!--查询总数据-->
-    <select id="findShcool" resultType="SchoolEntity">
+        <!--统计页数-->
+        <select id="count" resultType="java.lang.Long">
+            select count(*) from school
+        </select>
+
+        <!--查询所有数据-->
+        <select id="findPage" resultType="SchoolEntity">
         <bind name="key_info" value="(currPage-1)*pageSize"/>
-        select a.*,b.type_name cName from shcool a left join t_type b on a.typeid=b.type_id
-        limit #{key_info},#{pageSize}
-    </select>
-<!--新增-->
-    <insert id="addSchool">
-         insert into shcool values (#{sId},#{sName},#{typeId},#{sLocation},#{sDate},#{sGly},#{sdesc})
-    </insert>
+            select a.*,b.type_name cname from school a LEFT join t_type b on a.typeid=b.type_id
+            limit #{key_info},#{pageSize}
+        </select>
 
-    <!--批删 单删-->
-    <delete id="delSchool">
-        delete from school where s_id in
-        <foreach collection="array" open="(" separator="," close=")" item="id">#{id}</foreach>
-    </delete>
+        <!--新增数据-->
+        <insert id="add">
+            insert into school  values (#{schoolid},#{schoolname},#{typeid},#{schoolLocation},#{schooldate},#{schoolgly},#{schooldesc})
+        </insert>
 
-    <!--回显一条数据-->
-    <select id="findOne" resultType="SchoolEntity">
-        select * from school where s_id=#{ids}
-    </select>
+        <!--修改数据-->
+        <update id="upschool">
+            update school set schoolname=#{schoolname},typeid=#{typeid},schoolLocation=#{schoolLocation},schooldate=#{schooldate},schoolgly=#{schoolgly},schooldesc=#{schooldesc} where schoolid=#{schoolid}
+        </update>
+
+        <!--批删-->
+        <delete id="delAll">
+            delete from school where schoolid in
+            <foreach collection="array" open="(" separator="," close=")" item="id">#{id}</foreach>
+        </delete>
+
+        <!--回显数据-->
+        <select id="findOne" resultType="SchoolEntity">
+            select * from school where schoolid=#{ids}
+        </select>
 </mapper>

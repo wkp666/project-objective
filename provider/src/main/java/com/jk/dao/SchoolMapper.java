@@ -9,16 +9,16 @@ import java.util.List;
 
 @Mapper
 public interface SchoolMapper {
-    //统计总条数
+    //统计页数
     long count();
     //查询所有数据
-    List<SchoolEntity> findShcool(@Param("currPage") Integer currPage, @Param("pageSize") Integer pageSize);
+    List<SchoolEntity> findPage(@Param("currPage") Integer currPage,@Param("pageSize") Integer pageSize);
     //新增数据
-    void addSchool(SchoolEntity school);
+    void add(SchoolEntity schoo);
     //修改数据
-    void upSchool(SchoolEntity school);
-    //单删
-    void delSchool(String[] ids);
+    void upschool(SchoolEntity schoo);
+    //单删批删
+    void delAll(@Param("ids")String[] ids);
     //回显数据
-    SchoolEntity findOne(Integer ids);
+    SchoolEntity findOne(@Param("ids") Integer ids);
 }

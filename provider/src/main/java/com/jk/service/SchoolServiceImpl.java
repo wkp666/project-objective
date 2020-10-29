@@ -13,30 +13,32 @@ public class SchoolServiceImpl implements SchoolService{
     @Resource
     private SchoolMapper schoolMapper;
 
+
     @Override
-    public PageResult findSchool(Integer currPage, Integer pageSize) {
-        //统计总数量
-        long total = schoolMapper.count();
-        //查询所有数据
-        List<SchoolEntity> list=schoolMapper.findShcool(currPage,pageSize);
+    public PageResult findPage(Integer currPage, Integer pageSize) {
+        long total=schoolMapper.count();
 
-        long totalPage=total%pageSize==1? total/pageSize : (total/pageSize+1);
+        List<SchoolEntity>list=schoolMapper.findPage(currPage,pageSize);
 
+        Long totalPage= total%pageSize==1? total/pageSize : (total/pageSize+1);
         return new PageResult(total,list,currPage,pageSize,totalPage);
     }
-    @Override//新增数据  修改数据
-    public void addSchool(SchoolEntity school) {
-        if(school.getSId()==null){
-            //执行新增的方法
-            schoolMapper.addSchool(school);
+
+    @Override//新增数据
+    public void add(SchoolEntity schoo) {
+        if (schoo.getSchoolid()==null){
+            //id为空执行新增数据
+            schoolMapper.add(schoo);
         }else{
-            //ID不为空执行修改的方法
-            schoolMapper.upSchool(school);
+            //id不为空执行修改
+            schoolMapper.upschool(schoo);
         }
+
     }
-    @Override//学校的单删的方式
-    public void delSchool(String[] ids) {
-        schoolMapper.delSchool(ids);
+
+    @Override//单删批删
+    public void delAll(String[] ids) {
+        schoolMapper.delAll(ids);
     }
 
     @Override//回显数据

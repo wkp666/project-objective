@@ -14,35 +14,25 @@ import javax.annotation.Resource;
 public class SchoolController {
     @Resource
     private SchoolService schoolService;
-
-    /*
-     * 学校管理分页
-     * */
-    @RequestMapping("/findSchool")
-    public PageResult findSchool(@RequestParam(value = "currPage", defaultValue = "2") Integer currPage, @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
-        return schoolService.findSchool(currPage, pageSize);
+    //分页查询数据
+    @RequestMapping("/findPage")
+    public PageResult findPage(@RequestParam Integer currPage,@RequestParam Integer pageSize){
+        return schoolService.findPage(currPage,pageSize);
     }
-
-    /*
-     * 学校管理新增数据
-     * */
-    @RequestMapping("/addSchool")
-    public void addSchool(@RequestBody SchoolEntity school) {
-        schoolService.addSchool(school);
+    //新增数据
+    @RequestMapping("/add")
+    public void add(@RequestBody SchoolEntity schoo){
+        schoolService.add(schoo);
     }
-    /*
-     * 单删
-     * 批删
-     * */
-    @RequestMapping("/delSchool")
-    public void delSchool(@RequestParam String[] ids){
-        schoolService.delSchool(ids);
+    //单删批删
+    @RequestMapping("/delAll")
+    public void delAll(@RequestParam String[] ids){
+        schoolService.delAll(ids);
     }
-    /*
-     * 回显数据
-     * */
+    //回显数据
     @RequestMapping("/findOne")
-    public SchoolEntity findOne( Integer ids){
+    public SchoolEntity findOne(@RequestParam Integer ids){
         return schoolService.findOne(ids);
     }
+
 }

@@ -3,6 +3,7 @@ package com.jk.controller;
 import com.jk.config.PageResult;
 import com.jk.entity.SchoolEntity;
 import com.jk.service.schService;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,22 +17,22 @@ public class SchController {
 
     //查询数据分页
     @RequestMapping("/findAll")
-    public PageResult findAll(@RequestParam(value = "currPage",defaultValue = "2")Integer currPage, @RequestParam(value = "pageSize",defaultValue = "10")Integer pageSize){
-        return schoolService.findSchool(currPage,pageSize);
+    public PageResult findAll(@RequestParam Integer currPage, @RequestParam Integer pageSize){
+        return schoolService.findPage(currPage,pageSize);
     }
-    //新增数据
+    //新增数据 修改数据
     @RequestMapping("/add")
-    public void add(SchoolEntity school){
-        schoolService.addSchool(school);
+    public void add(@RequestBody SchoolEntity schoo){
+        schoolService.add(schoo);
     }
-    //单删
+    //单删批删
     @RequestMapping("/del")
-    public void del(String[] ids){
-        schoolService.delSchool(ids);
+    public void delAll(@RequestParam String[] ids){
+        schoolService.delAll(ids);
     }
     //回显数据
     @RequestMapping("/findOne")
-    public SchoolEntity findOne(Integer ids){
+    public SchoolEntity findOne(@RequestParam Integer ids){
         return schoolService.findOne(ids);
     }
 }

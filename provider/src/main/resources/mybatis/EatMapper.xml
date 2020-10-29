@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.EatMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.entity.Eat" >
+    <id column="eat_id" property="eatId" jdbcType="INTEGER" />
+    <result column="eat_school" property="eatSchool" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="breakfast" property="breakfast" jdbcType="VARCHAR" />
+    <result column="morning" property="morning" jdbcType="VARCHAR" />
+    <result column="afternoon" property="afternoon" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    eat_id, eat_school, create_date, breakfast, morning, afternoon
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_eat
+    where eat_id = #{eatId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_eat
+    where eat_id = #{eatId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jk.entity.Eat" >
+    insert into t_eat (eat_id, eat_school, create_date, 
+      breakfast, morning, afternoon
+      )
+    values (#{eatId,jdbcType=INTEGER}, #{eatSchool,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{breakfast,jdbcType=VARCHAR}, #{morning,jdbcType=VARCHAR}, #{afternoon,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jk.entity.Eat" >
+    insert into t_eat
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eatId != null" >
+        eat_id,
+      </if>
+      <if test="eatSchool != null" >
+        eat_school,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="breakfast != null" >
+        breakfast,
+      </if>
+      <if test="morning != null" >
+        morning,
+      </if>
+      <if test="afternoon != null" >
+        afternoon,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eatId != null" >
+        #{eatId,jdbcType=INTEGER},
+      </if>
+      <if test="eatSchool != null" >
+        #{eatSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="breakfast != null" >
+        #{breakfast,jdbcType=VARCHAR},
+      </if>
+      <if test="morning != null" >
+        #{morning,jdbcType=VARCHAR},
+      </if>
+      <if test="afternoon != null" >
+        #{afternoon,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jk.entity.Eat" >
+    update t_eat
+    <set >
+      <if test="eatSchool != null" >
+        eat_school = #{eatSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="breakfast != null" >
+        breakfast = #{breakfast,jdbcType=VARCHAR},
+      </if>
+      <if test="morning != null" >
+        morning = #{morning,jdbcType=VARCHAR},
+      </if>
+      <if test="afternoon != null" >
+        afternoon = #{afternoon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where eat_id = #{eatId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jk.entity.Eat" >
+    update t_eat
+    set eat_school = #{eatSchool,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      breakfast = #{breakfast,jdbcType=VARCHAR},
+      morning = #{morning,jdbcType=VARCHAR},
+      afternoon = #{afternoon,jdbcType=VARCHAR}
+    where eat_id = #{eatId,jdbcType=INTEGER}
+  </update>
+
+  <!--统计页数-->
+  <select id="count" resultType="java.lang.Long">
+    select count(*) from t_eat <include refid="wrainfo"></include>
+  </select>
+
+  <!--开启分页查询-->
+  <select id="queryEat" resultMap="BaseResultMap">
+    <bind name="key_info" value="(currPage-1)*pageSize"/>
+    select * from t_eat 
+    <include refid="wrainfo"></include>
+    limit #{key_info},#{pageSize}
+  </select>
+
+  <!--单删批删-->
+  <delete id="del">
+    delete from t_eat where eat_id in
+    <foreach collection="array" open="(" separator="," close=")" item="id" >#{id}</foreach>
+  </delete>
+  
+  
+<!-- 名字模糊查询-->
+  <sql id="wrainfo">
+    <where>
+        <if test="eat.eatSchool!=null and eat.eatSchool!=''">
+           and eatSchool like '%${eat.eatSchool}%'
+        </if>
+    </where>
+  </sql>
+</mapper>

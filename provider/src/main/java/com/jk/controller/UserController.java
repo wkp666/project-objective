@@ -1,5 +1,6 @@
 package com.jk.controller;
 
+import com.jk.entity.SchoolEntity;
 import com.jk.entity.User;
 import com.jk.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,5 +17,9 @@ public class UserController {
     @RequestMapping("/find")
     public List<User> find(){
         return userService.find();
+    }
+    @RequestMapping("/Schcool")
+    public List<SchoolEntity>school(){
+        return userService.school();
     }
 }

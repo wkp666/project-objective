@@ -4,4 +4,8 @@
     <select id="find" resultType="User">
         select * from t_user
     </select>
+
+    <select id="school" resultType="SchoolEntity">
+        select * from school
+    </select>
 </mapper>

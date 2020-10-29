@@ -31,4 +31,5 @@ public class PageResult implements Serializable {
 		this.totalPage = totalPage;
 	}
 
+
 }

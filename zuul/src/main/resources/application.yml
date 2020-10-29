@@ -1,3 +1,4 @@
+
 server:
   port: 9001
 
@@ -12,13 +13,9 @@ eureka:
 
 zuul:
   routes:
-       web:
-         path: /web/**
-         serviceId: web
-   provider:
-       path: /provider/**
-       serviceId: provider
-
-
-
-
+    web:
+      path: /web/**
+      serviceId: web
+    provider:
+      path: /provider/**
+      serviceId: provider

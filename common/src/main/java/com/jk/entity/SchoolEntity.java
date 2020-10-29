@@ -1,25 +1,31 @@
 package com.jk.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 @Data
 public class SchoolEntity {
     //id
-    private Integer sId;
+    private Integer schoolid;
     //学校名称
-    private String  sName;
+    private String  schoolname;
     //类型表
     private Integer typeId;
     //所在地
-    private String  sLocation;
+    private String  schoolLocation;
     //时间
-    private String  sDate;
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date schooldate;
     //管理员
-    private String  sGly;
+    private String  schoolgly;
     //描述
-    private String  sdesc;
+    private String  schooldesc;
 
     //业务字段
-    private String cName;
+    private String cname;
 
 }

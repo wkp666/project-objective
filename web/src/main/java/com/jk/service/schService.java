@@ -12,23 +12,18 @@ public interface schService {
     /*
     * 学校管理分页查询
     * */
-    @RequestMapping("/findSchool")
-    public PageResult findSchool (@RequestParam(value = "currPage",defaultValue = "2")Integer currPage, @RequestParam(value = "pageSize",defaultValue = "10")Integer pageSize);
-    /*
-     * 学校管理新增数据
-     * */
-    @RequestMapping("/addSchool")
-    public void addSchool(@RequestBody SchoolEntity school);
+    @RequestMapping("/findPage")
+    public PageResult findPage(@RequestParam Integer currPage,@RequestParam Integer pageSize);
 
-    /*
-     * 单删
-     * 批删
-     * */
-    @RequestMapping("/delSchool")
-    public void delSchool(@RequestParam String[] ids);
-    /*
-     * 回显数据
-     * */
+    //新增数据
+    @RequestMapping("/add")
+    public void add(@RequestBody SchoolEntity schoo);
+
+    //单删批删
+    @RequestMapping("/delAll")
+    public void delAll(@RequestParam String[] ids);
+
+    //回显数据
     @RequestMapping("/findOne")
     public SchoolEntity findOne(@RequestParam Integer ids);
 }
