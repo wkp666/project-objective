@@ -1,3 +1,5 @@
 com\jk\entity\SchoolEntity.class
 com\jk\config\PageResult.class
+com\jk\entity\StudentEntity.class
+com\jk\entity\Eat.class
 com\jk\entity\User.class
